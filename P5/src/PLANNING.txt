@@ -1,0 +1,20 @@
+Build generate_successors(), selection strategies
+- Our Selection Strategy
+    - Step 1 Elitism: Grab X best favored stages (what is our "favortism" IDK?) + a few extra random ones
+    - Step 2 Tournament: From a random subset, select the best performing ones (what is "best performing"? an arbitrary score/criteria?)
+- INPUT: list of Parent Levels to be selected from and used to generate Children Levels using generate_children()
+- OUTPUT: list of Children Levels from generate_children(), with Parent Levels selected from our selection strategy
+
+In generate_children() [line 86-89], use either Single-Point or Uniform Crossover to "mix" the genes (personally would use Uniform, seems easier to impliment?)
+- To call: parent1.generate_children(parent2)
+- OUTPUT: single new Child Level, generated from parent1 & parent2
+
+Modify mutate(self, genome) [line 75]
+- To call: Level.mutate(level.genome) (i think?????)
+- genome: the level represented in grid format. ex:[
+    [#, #, #, #, #, #],         ///h = 0
+    [#, B, #, #, #, P],         ///h = 1
+    [#, #, #, #, F, F],         ///h = 2
+    [F, F, #, F, F, F],         ///h = 3
+]
+- Purpose: mutate specific 'genes' based on arbitrary "mutation rate"/frequency and logic. also making sure the result abides by rules (ex, no floating pipes) 
